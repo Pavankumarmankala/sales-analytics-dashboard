@@ -1,0 +1,13 @@
+category,product,orders,units_sold,revenue,profit,category_share_pct,rank_in_category
+Appliances,Espresso Machine,252,723,473292.9,165012.93,41.05,1
+Appliances,Robot Vacuum,247,762,430860.7,143304.76,37.37,2
+Appliances,Air Purifier,227,659,248916.15,93780.96,21.59,3
+Electronics,Laptop Pro 14,449,1340,1640442.15,456793.35,32.71,1
+Electronics,Smartphone X,568,1694,1432466.6,427348.64,28.56,2
+Electronics,Tablet Air,378,1119,686706.9,221919.06,13.69,3
+Furniture,Standing Desk,318,948,802807.0,291455.8,38.74,1
+Furniture,Conference Table,187,557,622041.2,207978.54,30.01,2
+Furniture,Ergonomic Chair,337,979,461475.2,178133.02,22.27,3
+Office,Laser Printer,204,615,315784.8,113203.8,68.18,1
+Office,Shredder,176,531,114431.3,48767.84,24.71,2
+Office,Desk Lamp,133,393,32916.65,15428.15,7.11,3

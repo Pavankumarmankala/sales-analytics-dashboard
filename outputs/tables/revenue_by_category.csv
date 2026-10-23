@@ -1,0 +1,5 @@
+category,orders,units_sold,revenue,profit,profit_margin_pct,revenue_share_pct,revenue_rank
+Electronics,2716,8097,5015456.0,1579490.7,31.49,57.62,1
+Furniture,1045,3083,2072471.6,751385.09,36.26,23.81,2
+Appliances,726,2144,1153069.75,402098.65,34.87,13.25,3
+Office,513,1539,463132.75,177399.79,38.3,5.32,4

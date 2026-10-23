@@ -1,0 +1,5 @@
+region,orders,units_sold,revenue,profit,profit_margin_pct,avg_order_value,avg_discount_pct,revenue_share_pct,revenue_rank
+North,1438,4184,2506326.4,858471.65,34.25,1742.93,4.6,28.79,1
+East,1310,3917,2378137.25,796515.17,33.49,1815.37,5.38,27.32,2
+West,1154,3508,2014010.7,701346.7,34.82,1745.24,4.18,23.14,3
+South,1098,3254,1805655.75,554040.71,30.68,1644.5,9.7,20.74,4

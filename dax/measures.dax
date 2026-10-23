@@ -1,0 +1,92 @@
+// =====================================================================
+// Sales Analytics Dashboard — Power BI DAX measures
+// =====================================================================
+// This file is the Power BI layer of the project in text form. There is
+// no .pbix file in this repository: the model and report are described
+// in README.md, and these measures are what the report pages use.
+//
+// Data model (star schema, built from outputs/tables + the cleaned
+// sales_orders table):
+//   FactSales      : one row per order line (order_id, order_date,
+//                    customer_id, region, product, category, units,
+//                    unit_price, unit_cost, discount, revenue, profit)
+//   DimDate        : calendar table keyed on order_date, marked as the
+//                    date table for time-intelligence measures
+//   Relationships  : FactSales[order_date] -> DimDate[Date] (many-to-one)
+//                    Region / category / segment are kept as attributes
+//                    on FactSales (degenerate dimensions) in this model.
+// =====================================================================
+
+Total Revenue =
+SUM ( FactSales[revenue] )
+
+Total Orders =
+COUNTROWS ( FactSales )
+
+Total Units Sold =
+SUM ( FactSales[units] )
+
+Total Profit =
+SUM ( FactSales[profit] )
+
+Gross Amount =
+SUM ( FactSales[gross_amount] )
+
+Discount Amount =
+SUM ( FactSales[discount_amount] )
+
+Average Order Value =
+DIVIDE ( [Total Revenue], [Total Orders] )
+
+Average Discount % =
+AVERAGE ( FactSales[discount] )
+
+Discount % of Gross =
+DIVIDE ( [Discount Amount], [Gross Amount] )
+
+Profit Margin % =
+DIVIDE ( [Total Profit], [Total Revenue] )
+
+Revenue Share % =
+// Share of the currently visible revenue — used with Region, Category
+// or Customer Segment on the axis; ALLSELECTED keeps page filters
+// while removing the axis member's own filter.
+DIVIDE (
+    [Total Revenue],
+    CALCULATE ( [Total Revenue], ALLSELECTED ( FactSales ) )
+)
+
+Revenue by Region Share % =
+DIVIDE (
+    [Total Revenue],
+    CALCULATE ( [Total Revenue], ALL ( FactSales[region] ) )
+)
+
+Revenue Previous Month =
+CALCULATE ( [Total Revenue], DATEADD ( DimDate[Date], -1, MONTH ) )
+
+Revenue MoM Growth % =
+VAR CurrentMonth = [Total Revenue]
+VAR PrevMonth = [Revenue Previous Month]
+RETURN
+    DIVIDE ( CurrentMonth - PrevMonth, PrevMonth )
+
+Revenue Running Total =
+CALCULATE (
+    [Total Revenue],
+    FILTER ( ALLSELECTED ( DimDate ), DimDate[Date] <= MAX ( DimDate[Date] ) )
+)
+
+Revenue YTD =
+TOTALYTD ( [Total Revenue], DimDate[Date] )
+
+Top Product Revenue =
+// Revenue of the single best-selling product in the current filter
+// context (used on the Executive Summary page KPI card).
+MAXX ( VALUES ( FactSales[product] ), [Total Revenue] )
+
+Distinct Customers =
+DISTINCTCOUNT ( FactSales[customer_id] )
+
+Revenue per Customer =
+DIVIDE ( [Total Revenue], [Distinct Customers] )

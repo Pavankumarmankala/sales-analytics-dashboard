@@ -1,0 +1,5 @@
+customer_segment,orders,customers,revenue,profit,avg_order_value,revenue_per_order,revenue_share_pct,revenue_rank
+Consumer,1940,789,3365073.4,1118899.0,1734.57,1734.57,38.66,1
+Small Business,1330,428,2308881.6,771665.71,1736.0,1736.0,26.53,2
+Corporate,1102,219,1866457.65,632264.84,1693.7,1693.7,21.44,3
+Enterprise,628,80,1163717.45,387544.68,1853.05,1853.05,13.37,4
